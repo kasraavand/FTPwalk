@@ -2,8 +2,8 @@ import ftplib
 from os import path
 
 class ftp_walker(object):
-    def __init__(self):
-        self.connection = ftplib.FTP('ftp.xenbase.org')
+    def __init__(self,host_name):
+        self.connection = ftplib.FTP(host_name)
         self.connection.login()
 
     def listdir(self,path):
@@ -32,7 +32,7 @@ class ftp_walker(object):
             yield top, dirs, nondirs
 
 if __name__=='__main__':
-    FT=ftp_walker()
+    FT=ftp_walker('ftp.python.org')
     for root,dirs,files in FT.Walk('/'):
           print(root,dirs,files)
     
